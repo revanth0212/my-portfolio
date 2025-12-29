@@ -1,8 +1,6 @@
 // Blog posts index - imports all markdown blog posts
-import post1Markdown from './getting-started-react-hooks.md?raw';
-import post2Markdown from './building-modern-web-vite.md?raw';
-import post3Markdown from './accessibility-best-practices.md?raw';
-import post4Markdown from './moe-cheat-sheet.md?raw';
+import post1Markdown from './moe-cheat-sheet.md?raw';
+import post2Markdown from './mlx-finetuning.md?raw';
 
 // Simple frontmatter parser (browser-compatible)
 function parseMarkdown(markdownContent, id) {
@@ -27,20 +25,36 @@ function parseMarkdown(markdownContent, id) {
     }
   }
 
+  // Parse tags if they exist (comma-separated or array format)
+  let tags = [];
+  if (frontmatter.tags) {
+    tags = frontmatter.tags.includes(',')
+      ? frontmatter.tags.split(',').map(t => t.trim())
+      : frontmatter.tags.split(' ').map(t => t.trim());
+  }
+
   return {
     id,
     title: frontmatter.title,
     date: frontmatter.date,
     readTime: frontmatter.readTime,
     excerpt: frontmatter.excerpt,
-    content: content
+    content: content,
+    tags: tags
   };
 }
 
 // Parse all blog posts
 export const blogPosts = [
   parseMarkdown(post1Markdown, 1),
-  parseMarkdown(post2Markdown, 2),
-  parseMarkdown(post3Markdown, 3),
-  parseMarkdown(post4Markdown, 4)
+  parseMarkdown(post2Markdown, 2)
 ];
+
+// Get all unique tags from all posts
+export const getAllTags = () => {
+  const tags = new Set();
+  blogPosts.forEach(post => {
+    post.tags.forEach(tag => tags.add(tag));
+  });
+  return Array.from(tags).sort();
+};

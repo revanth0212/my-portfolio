@@ -1,11 +1,10 @@
 ---
-title: "The MoE Cheat Sheet: Scaling LLMs Without Killing Your Compute Budget"
-date: "2024-12-29"
-readTime: "8 min read"
+title: "Scaling LLMs Without Killing Your Compute Budget"
+date: "2025-12-25"
+readTime: "10 min read"
 excerpt: "Learn how Mixture-of-Experts (MoE) architecture breaks the wall between model size and computational efficiency."
+tags: ["LLM", "MoE", "Architecture", "Scalability"]
 ---
-
-# The MoE Cheat Sheet: Scaling LLMs Without Killing Your Compute Budget
 
 In the world of Large Language Models, we've hit a wall: making models bigger usually makes them slower and more expensive. **Mixture-of-Experts (MoE)** is the architectural "cheat code" designed to break that wall, allowing us to build models with massive knowledge bases that run with the speed of much smaller ones.
 

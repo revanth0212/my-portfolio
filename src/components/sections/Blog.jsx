@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { blogPosts } from '../../data/blogPosts';
+import { blogPosts, getAllTags } from '../../data/blogPosts';
 
 const SectionContainer = styled.section`
   padding: 2rem;
@@ -24,6 +24,57 @@ const SectionTitle = styled.h2`
   @media (max-width: 768px) {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+`;
+
+const TagFilter = styled.div`
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+  }
+`;
+
+const FilterLabel = styled.span`
+  font-size: 0.875rem;
+  color: ${props => props.theme.muted};
+  margin-right: 0.5rem;
+`;
+
+const TagButton = styled.button`
+  background: transparent;
+  border: 1px solid ${props => props.theme.border};
+  color: ${props => props.theme.foreground};
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.secondary};
+    border-color: ${props => props.theme.accent};
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${props => props.theme.accent};
+  }
+
+  ${props => props.active && `
+    background-color: ${props.theme.accent};
+    color: ${props =>.theme.name === 'light' || props.theme.name === 'classic-light' ? '#fff' : props.theme.background};
+    border-color: ${props.theme.theme.accent};
+  `}
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
   }
 `;
 
@@ -75,6 +126,28 @@ const PostMeta = styled.div`
   margin-bottom: 1rem;
 `;
 
+const PostTags = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+`;
+
+const Tag = styled.span`
+  background-color: ${props => props.theme.background};
+  color: ${props => props.theme.accent};
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  border: 1px solid ${props => props.theme.border};
+  font-family: 'Fira Code', monospace;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+  }
+`;
+
 const PostExcerpt = styled.p`
   color: ${props => props.theme.foreground};
   line-height: 1.6;
@@ -97,6 +170,13 @@ const EmptyState = styled.div`
 
 const Blog = () => {
   const { currentTheme } = useTheme();
+  const [selectedTag, setSelectedTag] = useState(null);
+  const allTags = getAllTags();
+
+  const filteredPosts = useMemo(() => {
+    if (!selectedTag) return blogPosts;
+    return blogPosts.filter(post => post.tags.includes(selectedTag));
+  }, [selectedTag]);
 
   if (blogPosts.length === 0) {
     return (
@@ -115,8 +195,30 @@ const Blog = () => {
       <p style={{ color: currentTheme.muted, marginBottom: '1.5rem' }}>
         Thoughts, tutorials, and insights about software development
       </p>
+
+      <TagFilter>
+        <FilterLabel theme={currentTheme}>Filter:</FilterLabel>
+        <TagButton
+          theme={currentTheme}
+          active={!selectedTag}
+          onClick={() => setSelectedTag(null)}
+        >
+          All
+        </TagButton>
+        {allTags.map(tag => (
+          <TagButton
+            key={tag}
+            theme={currentTheme}
+            active={selectedTag === tag}
+            onClick={() => setSelectedTag(tag)}
+          >
+            {tag}
+          </TagButton>
+        ))}
+      </TagFilter>
+
       <BlogList>
-        {blogPosts.map((post) => (
+        {filteredPosts.map((post) => (
           <BlogCard
             key={post.id}
             to={`/blog/${post.id}`}
@@ -127,6 +229,13 @@ const Blog = () => {
             <PostMeta theme={currentTheme}>
               {post.date} • {post.readTime}
             </PostMeta>
+            {post.tags && post.tags.length > 0 && (
+              <PostTags>
+                {post.tags.map(tag => (
+                  <Tag key={tag} theme={currentTheme}>{tag}</Tag>
+                ))}
+              </PostTags>
+            )}
             <PostExcerpt theme={currentTheme}>{post.excerpt}</PostExcerpt>
           </BlogCard>
         ))}
