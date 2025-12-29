@@ -194,7 +194,7 @@ const AppContent = () => {
         setOutput(prev => [...prev, { text: `      Date: ${post.date} | ${post.readTime}`, type: 'muted' }]);
       });
       setOutput(prev => [...prev, { text: '', type: 'text' }]);
-      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog moe")', type: 'info' }]);
+      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog moe-scaling")', type: 'info' }]);
       return;
     }
 

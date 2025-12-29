@@ -188,7 +188,7 @@ const ArticleContent = styled.div`
 const BlogPost = () => {
   const { currentTheme } = useTheme();
   const { id } = useParams();
-  const post = blogPosts.find(p => p.id === parseInt(id));
+  const post = blogPosts.find(p => p.id === id);
 
   if (!post) {
     return <Navigate to="/blog" replace />;

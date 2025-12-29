@@ -1,5 +1,5 @@
 ---
-id: "moe"
+id: "moe-scaling"
 title: "Scaling LLMs Without Killing Your Compute Budget"
 date: "2025-12-25"
 readTime: "10 min read"

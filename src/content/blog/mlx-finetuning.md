@@ -1,5 +1,5 @@
 ---
-id: "mlx"
+id: "mlx-finetuning"
 title: "A Guide to Fine-Tuning Gemma 3 on Apple Hardware"
 date: "2025-12-29"
 readTime: "10 min read"
