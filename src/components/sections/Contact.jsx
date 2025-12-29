@@ -8,6 +8,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -16,6 +20,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ContactCard = styled.div`
@@ -24,6 +33,11 @@ const ContactCard = styled.div`
   padding: 2rem;
   background-color: ${props => props.theme.secondary};
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
 `;
 
 const ContactItem = styled.div`
@@ -45,12 +59,22 @@ const ContactItem = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
 `;
 
 const ContactIcon = styled.span`
   font-size: 1.5rem;
   width: 40px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    width: 32px;
+  }
 `;
 
 const ContactInfo = styled.div`
@@ -80,6 +104,11 @@ const SocialLinks = styled.div`
   gap: 1rem;
   margin-top: 2rem;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+  }
 `;
 
 const SocialButton = styled.a`
@@ -99,6 +128,11 @@ const SocialButton = styled.a`
     background-color: ${props => props.theme.accent};
     color: ${props => props.theme.name === 'light' ? '#fff' : props.theme.background};
     transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 `;
 

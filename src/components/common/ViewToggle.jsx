@@ -29,6 +29,16 @@ const ToggleButton = styled.button`
     outline: none;
     box-shadow: 0 0 0 2px ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    gap: 0.3rem;
+
+    span:last-child {
+      display: none;
+    }
+  }
 `;
 
 const ViewToggle = () => {

@@ -21,6 +21,11 @@ const ToggleButton = styled.button`
     outline: none;
     box-shadow: 0 0 0 2px ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+  }
 `;
 
 const ThemeToggle = () => {

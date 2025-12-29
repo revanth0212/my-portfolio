@@ -14,6 +14,12 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 `;
 
 const Title = styled(Link)`
@@ -35,12 +41,23 @@ const Title = styled(Link)`
     text-decoration: underline;
     text-decoration-color: ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    font-size: ${props => props.view === 'normal' ? '1.2rem' : '0.9rem'};
+    word-break: break-all;
+  }
 `;
 
 const Controls = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
 `;
 
 const HelpButton = styled.button`
@@ -58,12 +75,17 @@ const HelpButton = styled.button`
   &:hover {
     background-color: ${props => props.theme.accent};
     border-color: ${props => props.theme.accent};
-    color: ${props => props.theme.name === 'light' || props.theme.name === 'normal-light' ? '#fff' : props.theme.background};
+    color: ${props => props.theme.name === 'light' || props.theme.name === 'classic-light' ? '#fff' : props.theme.background};
   }
 
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px ${props => props.theme.accent};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
   }
 `;
 

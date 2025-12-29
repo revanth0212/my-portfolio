@@ -12,6 +12,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -20,6 +24,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const BackButton = styled(Link)`
@@ -100,6 +109,14 @@ const PostContent = styled.div`
     max-width: 100%;
     border-radius: 5px;
     margin: 1.5rem 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.1rem; }
+    p { font-size: 0.9rem; }
+    ul, ol { margin-left: 1.5rem; }
   }
 `;
 

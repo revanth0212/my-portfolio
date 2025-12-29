@@ -8,6 +8,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -16,6 +20,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const BlogList = styled.div`
@@ -44,12 +53,20 @@ const BlogCard = styled(Link)`
     outline: none;
     box-shadow: 0 0 0 2px ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const PostTitle = styled.h3`
   font-size: 1.5rem;
   color: ${props => props.theme.accent};
   margin-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const PostMeta = styled.div`
@@ -61,12 +78,21 @@ const PostMeta = styled.div`
 const PostExcerpt = styled.p`
   color: ${props => props.theme.foreground};
   line-height: 1.6;
+  font-size: 0.95rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const EmptyState = styled.div`
   text-align: center;
   padding: 3rem;
   color: ${props => props.theme.muted};
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Blog = () => {

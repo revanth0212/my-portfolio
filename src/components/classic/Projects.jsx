@@ -7,10 +7,18 @@ const Container = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Header = styled.div`
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -19,17 +27,30 @@ const Title = styled.h1`
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
 `;
 
 const Subtitle = styled.p`
   color: ${props => props.theme.muted};
   font-size: 1.1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const ProjectCard = styled.div`
@@ -47,6 +68,10 @@ const ProjectCard = styled.div`
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
+
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+  }
 `;
 
 const ProjectTitle = styled.h3`
@@ -54,6 +79,10 @@ const ProjectTitle = styled.h3`
   font-weight: 600;
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.15rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
@@ -62,6 +91,11 @@ const ProjectDescription = styled.p`
   margin-bottom: 1.25rem;
   font-size: 0.95rem;
   flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const TechStack = styled.div`
@@ -69,6 +103,11 @@ const TechStack = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.25rem;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const TechTag = styled.span`
@@ -78,12 +117,21 @@ const TechTag = styled.span`
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
+  }
 `;
 
 const ProjectLinks = styled.div`
   display: flex;
   gap: 0.75rem;
   margin-top: auto;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
 `;
 
 const ProjectLink = styled.a`
@@ -106,6 +154,11 @@ const ProjectLink = styled.a`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 3px ${props => props.theme.accent}40;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
   }
 `;
 

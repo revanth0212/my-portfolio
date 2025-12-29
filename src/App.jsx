@@ -40,6 +40,7 @@ const Main = styled.main`
 const Content = styled.div`
   flex: 1;
   overflow-y: auto;
+  width: 100%;
 `;
 
 const TerminalOutput = styled.div`
@@ -47,6 +48,10 @@ const TerminalOutput = styled.div`
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const OutputLine = styled.div`
@@ -77,6 +82,10 @@ const NavigationMenu = styled.nav`
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const MenuTitle = styled.h2`
@@ -85,6 +94,11 @@ const MenuTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const MenuList = styled.ul`
@@ -95,6 +109,10 @@ const MenuList = styled.ul`
 
 const MenuItem = styled.li`
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const MenuLink = styled(Link)`
@@ -117,6 +135,11 @@ const MenuLink = styled(Link)`
     content: '> ';
     color: ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
 `;
 
 const Welcome = styled.div`
@@ -124,17 +147,29 @@ const Welcome = styled.div`
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const WelcomeTitle = styled.h1`
   font-size: 2rem;
   color: ${props => props.theme.accent};
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const WelcomeText = styled.p`
   color: ${props => props.theme.muted};
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const AppContent = () => {

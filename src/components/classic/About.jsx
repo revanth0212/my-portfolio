@@ -8,6 +8,10 @@ const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -16,16 +20,29 @@ const Title = styled.h1`
   color: ${props => props.theme.foreground};
   margin-bottom: 2rem;
   letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Content = styled.div`
   color: ${props => props.theme.foreground};
   line-height: 1.8;
   font-size: 1.05rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Paragraph = styled.p`
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.25rem;
+  }
 `;
 
 const Highlight = styled.span`
@@ -51,6 +68,11 @@ const InfoCard = styled.div`
   padding: 1.5rem;
   margin-top: 2rem;
   box-shadow: ${props => props.theme.cardShadow};
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
 `;
 
 const InfoCardTitle = styled.h3`
@@ -58,6 +80,10 @@ const InfoCardTitle = styled.h3`
   font-weight: 600;
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const About = () => {

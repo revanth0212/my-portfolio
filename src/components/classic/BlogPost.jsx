@@ -9,6 +9,10 @@ const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const BackButton = styled(Link)`
@@ -24,6 +28,11 @@ const BackButton = styled(Link)`
   &:hover {
     gap: 0.75rem;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
 `;
 
 const Article = styled.article`
@@ -32,12 +41,21 @@ const Article = styled.article`
   border-radius: 12px;
   padding: 3rem;
   box-shadow: ${props => props.theme.cardShadow};
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const ArticleHeader = styled.header`
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid ${props => props.theme.border};
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
 `;
 
 const ArticleTitle = styled.h1`
@@ -47,6 +65,10 @@ const ArticleTitle = styled.h1`
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
   line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ArticleMeta = styled.div`
@@ -148,6 +170,18 @@ const ArticleContent = styled.div`
   strong {
     color: ${props => props.theme.accent};
     font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.1rem; }
+    p { font-size: 1rem; }
+    ul, ol { padding-left: 1.5rem; }
+    pre { padding: 1rem; }
+    blockquote { padding-left: 1rem; }
   }
 `;
 

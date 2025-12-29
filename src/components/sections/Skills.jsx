@@ -6,6 +6,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -14,6 +18,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const SkillsGrid = styled.div`
@@ -21,6 +30,12 @@ const SkillsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
 `;
 
 const SkillCategory = styled.div`
@@ -28,6 +43,10 @@ const SkillCategory = styled.div`
   border-radius: 5px;
   padding: 1.5rem;
   background-color: ${props => props.theme.secondary};
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const CategoryTitle = styled.h3`
@@ -37,6 +56,11 @@ const CategoryTitle = styled.h3`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SkillList = styled.ul`
@@ -62,6 +86,11 @@ const SkillItem = styled.li`
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
   }
 `;
 

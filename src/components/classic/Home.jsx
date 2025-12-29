@@ -11,6 +11,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const Hero = styled.div`
@@ -24,6 +28,11 @@ const Title = styled.h1`
   color: ${props => props.theme.foreground};
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -31,6 +40,11 @@ const Subtitle = styled.p`
   color: ${props => props.theme.muted};
   margin-bottom: 2.5rem;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Navigation = styled.nav`
@@ -38,6 +52,10 @@ const Navigation = styled.nav`
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -61,6 +79,11 @@ const NavLink = styled(Link)`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 3px ${props => props.theme.accent}40;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
   }
 `;
 

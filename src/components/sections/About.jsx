@@ -7,6 +7,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -15,6 +19,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ASCIIArt = styled.pre`
@@ -32,6 +41,10 @@ const ASCIIArt = styled.pre`
 const Content = styled.div`
   line-height: 1.8;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const Paragraph = styled.p`

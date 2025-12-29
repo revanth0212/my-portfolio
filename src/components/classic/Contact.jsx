@@ -8,6 +8,10 @@ const Container = styled.div`
   max-width: 700px;
   margin: 0 auto;
   padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -16,12 +20,21 @@ const Title = styled.h1`
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
 `;
 
 const Subtitle = styled.p`
   color: ${props => props.theme.muted};
   font-size: 1.1rem;
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactCard = styled.div`
@@ -31,12 +44,21 @@ const ContactCard = styled.div`
   padding: 2.5rem;
   box-shadow: ${props => props.theme.cardShadow};
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ContactList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 const ContactItem = styled.a`
@@ -60,12 +82,22 @@ const ContactItem = styled.a`
     outline: none;
     box-shadow: 0 0 0 3px ${props => props.theme.accent}40;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+  }
 `;
 
 const ContactIcon = styled.span`
   font-size: 1.5rem;
   width: 40px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    width: 32px;
+  }
 `;
 
 const ContactInfo = styled.div`
@@ -88,6 +120,10 @@ const FooterText = styled.p`
   color: ${props => props.theme.muted};
   font-size: 0.95rem;
   line-height: 1.7;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const Contact = () => {

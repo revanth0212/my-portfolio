@@ -7,6 +7,10 @@ const SectionContainer = styled.section`
   padding: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -15,6 +19,11 @@ const SectionTitle = styled.h2`
   border-bottom: 2px solid ${props => props.theme.accent};
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ProjectsGrid = styled.div`
@@ -22,6 +31,12 @@ const ProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
 `;
 
 const ProjectCard = styled.div`
@@ -36,12 +51,20 @@ const ProjectCard = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const ProjectTitle = styled.h3`
   font-size: 1.25rem;
   color: ${props => props.theme.accent};
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const ProjectDescription = styled.p`
@@ -49,6 +72,10 @@ const ProjectDescription = styled.p`
   line-height: 1.6;
   margin-bottom: 1rem;
   font-size: 0.95rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const TechStack = styled.div`
@@ -65,12 +92,22 @@ const TechTag = styled.span`
   border-radius: 3px;
   font-size: 0.85rem;
   border: 1px solid ${props => props.theme.border};
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+  }
 `;
 
 const ProjectLinks = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 `;
 
 const ProjectLink = styled.a`
@@ -90,12 +127,22 @@ const ProjectLink = styled.a`
     color: ${props => props.theme.name === 'light' ? '#fff' : props.theme.background};
     border-color: ${props => props.theme.accent};
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    justify-content: center;
+  }
 `;
 
 const EmptyState = styled.div`
   text-align: center;
   padding: 3rem;
   color: ${props => props.theme.muted};
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Projects = () => {

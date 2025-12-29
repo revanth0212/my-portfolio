@@ -19,6 +19,25 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
   }
 
+  /* Mobile responsive base styles */
+  @media (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+
   /* Skip navigation for accessibility */
   .skip-link {
     position: absolute;

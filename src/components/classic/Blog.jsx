@@ -8,10 +8,18 @@ const Container = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Header = styled.div`
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -20,11 +28,19 @@ const Title = styled.h1`
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
 `;
 
 const Subtitle = styled.p`
   color: ${props => props.theme.muted};
   font-size: 1.1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const BlogList = styled.div`
@@ -45,6 +61,10 @@ const BlogCard = styled.article`
     border-color: ${props => props.theme.accent};
     transform: translateY(-2px);
   }
+
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+  }
 `;
 
 const BlogTitle = styled.h2`
@@ -52,6 +72,10 @@ const BlogTitle = styled.h2`
   font-weight: 600;
   color: ${props => props.theme.foreground};
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const BlogMeta = styled.div`
@@ -66,6 +90,11 @@ const BlogExcerpt = styled.p`
   color: ${props => props.theme.foreground};
   line-height: 1.7;
   margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const ReadMoreLink = styled(Link)`
