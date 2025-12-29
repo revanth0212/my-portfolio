@@ -1,3 +1,3 @@
 // Re-export blog posts from content directory
-export { blogPosts } from '../content/blog';
+export { blogPosts, getAllTags } from '../content/blog';
 
