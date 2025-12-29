@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import GlobalStyle from './styles/globalStyles';
 import Header from './components/layout/Header';
@@ -141,27 +141,27 @@ const AppContent = () => {
     switch (cmd) {
       case 'about':
         setOutput(prev => [...prev, { text: 'Navigating to About...', type: 'success' }]);
-        window.location.href = '/about';
+        window.location.hash = '#/about';
         break;
       case 'projects':
         setOutput(prev => [...prev, { text: 'Navigating to Projects...', type: 'success' }]);
-        window.location.href = '/projects';
+        window.location.hash = '#/projects';
         break;
       case 'blog':
         setOutput(prev => [...prev, { text: 'Navigating to Blog...', type: 'success' }]);
-        window.location.href = '/blog';
+        window.location.hash = '#/blog';
         break;
       case 'skills':
         setOutput(prev => [...prev, { text: 'Navigating to Skills...', type: 'success' }]);
-        window.location.href = '/skills';
+        window.location.hash = '#/skills';
         break;
       case 'contact':
         setOutput(prev => [...prev, { text: 'Navigating to Contact...', type: 'success' }]);
-        window.location.href = '/contact';
+        window.location.hash = '#/contact';
         break;
       case 'home':
         setOutput(prev => [...prev, { text: 'Navigating to Home...', type: 'success' }]);
-        window.location.href = '/';
+        window.location.hash = '#/';
         break;
       case 'help':
         setOutput(prev => [...prev, { text: 'Opening help...', type: 'info' }]);
