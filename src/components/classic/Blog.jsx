@@ -252,6 +252,8 @@ const Blog = () => {
           <BlogCard key={post.id} theme={currentTheme}>
             <BlogTitle theme={currentTheme}>{post.title}</BlogTitle>
             <BlogMeta theme={currentTheme}>
+              <span>[{post.id}]</span>
+              <span>•</span>
               <span>{post.date}</span>
               <span>•</span>
               <span>{post.readTime}</span>

@@ -3,7 +3,7 @@ import post1Markdown from './moe-cheat-sheet.md?raw';
 import post2Markdown from './mlx-finetuning.md?raw';
 
 // Simple frontmatter parser (browser-compatible)
-function parseMarkdown(markdownContent, id) {
+function parseMarkdown(markdownContent) {
   // Split on the first --- to separate frontmatter from content
   const parts = markdownContent.split('---');
 
@@ -36,7 +36,7 @@ function parseMarkdown(markdownContent, id) {
   }
 
   return {
-    id,
+    id: frontmatter.id,
     title: frontmatter.title,
     date: frontmatter.date,
     readTime: frontmatter.readTime,
@@ -48,8 +48,8 @@ function parseMarkdown(markdownContent, id) {
 
 // Parse all blog posts
 export const blogPosts = [
-  parseMarkdown(post1Markdown, 1),
-  parseMarkdown(post2Markdown, 2)
+  parseMarkdown(post1Markdown),
+  parseMarkdown(post2Markdown)
 ];
 
 // Get all unique tags from all posts

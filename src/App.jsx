@@ -194,25 +194,20 @@ const AppContent = () => {
         setOutput(prev => [...prev, { text: `      Date: ${post.date} | ${post.readTime}`, type: 'muted' }]);
       });
       setOutput(prev => [...prev, { text: '', type: 'text' }]);
-      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog 1")', type: 'info' }]);
+      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog moe")', type: 'info' }]);
       return;
     }
 
     // Handle "blog <id>" to open a specific post
     if (mainCommand === 'blog' && args) {
-      const id = parseInt(args.trim());
-
-      if (isNaN(id)) {
-        setOutput(prev => [...prev, { text: 'Invalid blog ID. Use a number.', type: 'error' }]);
-        return;
-      }
+      const id = args.trim();
 
       const post = blogPosts.find(p => p.id === id);
       if (post) {
         setOutput(prev => [...prev, { text: `Opening "${post.title}"...`, type: 'success' }]);
         window.location.hash = `#/blog/${id}`;
       } else {
-        setOutput(prev => [...prev, { text: `Blog post with ID ${id} not found.`, type: 'error' }]);
+        setOutput(prev => [...prev, { text: `Blog post with ID "${id}" not found.`, type: 'error' }]);
         setOutput(prev => [...prev, { text: `Use "blogs" to see available posts.`, type: 'info' }]);
       }
       return;

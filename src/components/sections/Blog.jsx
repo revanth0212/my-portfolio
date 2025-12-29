@@ -227,7 +227,7 @@ const Blog = () => {
           >
             <PostTitle theme={currentTheme}>{post.title}</PostTitle>
             <PostMeta theme={currentTheme}>
-              {post.date} • {post.readTime}
+              [{post.id}] • {post.date} • {post.readTime}
             </PostMeta>
             {post.tags && post.tags.length > 0 && (
               <PostTags>
