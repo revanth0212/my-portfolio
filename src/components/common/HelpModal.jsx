@@ -150,8 +150,8 @@ const HelpModal = ({ isOpen, onClose }) => {
           <CommandTitle theme={currentTheme}>Terminal Commands</CommandTitle>
           <CommandItem><CommandCode theme={currentTheme}>about</CommandCode> - View information about me</CommandItem>
           <CommandItem><CommandCode theme={currentTheme}>blog</CommandCode> - Browse blog posts</CommandItem>
-          <CommandItem><CommandCode theme={currentTheme}>projects</CommandCode> - View my projects</CommandItem>
-          <CommandItem><CommandCode theme={currentTheme}>skills</CommandCode> - See my skills</CommandItem>
+          <CommandItem><CommandCode theme={currentTheme}>blogs</CommandCode> - List all blog posts</CommandItem>
+          <CommandItem><CommandCode theme={currentTheme}>blog &lt;id&gt;</CommandCode> - Open a specific blog post (e.g., "blog 1")</CommandItem>
           <CommandItem><CommandCode theme={currentTheme}>contact</CommandCode> - Get in touch</CommandItem>
           <CommandItem><CommandCode theme={currentTheme}>home</CommandCode> - Return to home</CommandItem>
           <CommandItem><CommandCode theme={currentTheme}>theme</CommandCode> - Toggle theme</CommandItem>

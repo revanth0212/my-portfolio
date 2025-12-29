@@ -5,13 +5,13 @@ import { useHotkeys } from 'react-hotkeys-hook';
 export const AVAILABLE_COMMANDS = [
   'about',
   'blog',
-  'projects',
-  'skills',
+  'blogs',
   'contact',
   'help',
   'clear',
   'theme',
   'home',
+  'list',
 ];
 
 export const useKeyboardNavigation = (onExecuteCommand, onToggleHelp, onClearCommand) => {

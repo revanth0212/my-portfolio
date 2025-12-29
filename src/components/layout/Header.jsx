@@ -9,7 +9,7 @@ import { siteConfig } from '../../config/site';
 
 const HeaderContainer = styled.header`
   padding: 1.5rem 2rem;
-  border-bottom: ${props => props.view === 'normal' ? '1px' : '2px'} solid ${props => props.theme.accent};
+  border-bottom: ${props => props.view === 'classic' ? '1px' : '2px'} solid ${props => props.theme.accent};
   background-color: ${props => props.theme.secondary};
   display: flex;
   justify-content: space-between;
@@ -23,12 +23,12 @@ const HeaderContainer = styled.header`
 `;
 
 const Title = styled(Link)`
-  font-size: ${props => props.view === 'normal' ? '1.5rem' : '1.25rem'};
-  font-weight: ${props => props.view === 'normal' ? '700' : '600'};
+  font-size: ${props => props.view === 'classic' ? '1.5rem' : '1.25rem'};
+  font-weight: ${props => props.view === 'classic' ? '700' : '600'};
   color: ${props => props.theme.foreground};
   margin: 0;
-  font-family: ${props => props.view === 'normal' ? 'system-ui, -apple-system, sans-serif' : "'Fira Code', monospace"};
-  letter-spacing: ${props => props.view === 'normal' ? '-0.02em' : 'normal'};
+  font-family: ${props => props.view === 'classic' ? 'system-ui, -apple-system, sans-serif' : "'Fira Code', monospace"};
+  letter-spacing: ${props => props.view === 'classic' ? '-0.02em' : 'normal'};
   text-decoration: none;
   transition: all 0.2s ease;
 
@@ -43,7 +43,7 @@ const Title = styled(Link)`
   }
 
   @media (max-width: 768px) {
-    font-size: ${props => props.view === 'normal' ? '1.2rem' : '0.9rem'};
+    font-size: ${props => props.view === 'classic' ? '1.2rem' : '0.9rem'};
     word-break: break-all;
   }
 `;
@@ -94,7 +94,7 @@ const Header = ({ onToggleHelp }) => {
   const { view } = useView();
 
   const getTitle = () => {
-    return view === 'normal' ? siteConfig.normalTitle : siteConfig.terminalPrompt;
+    return view === 'classic' ? siteConfig.classicTitle : siteConfig.terminalPrompt;
   };
 
   return (

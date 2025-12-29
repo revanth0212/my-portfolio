@@ -10,20 +10,17 @@ import HelpModal from './components/common/HelpModal';
 import TerminalInput from './components/common/TerminalInput';
 // Terminal view components
 import About from './components/sections/About';
-import Projects from './components/sections/Projects';
 import Blog from './components/sections/Blog';
 import BlogPost from './components/sections/BlogPost';
-import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
 // Classic view components
 import ClassicHome from './components/classic/Home';
 import ClassicAbout from './components/classic/About';
-import ClassicProjects from './components/classic/Projects';
 import ClassicBlog from './components/classic/Blog';
 import ClassicBlogPost from './components/classic/BlogPost';
-import ClassicSkills from './components/classic/Skills';
 import ClassicContact from './components/classic/Contact';
 import { AVAILABLE_COMMANDS } from './utils/keyboardNavigation';
+import { blogPosts } from './content/blog';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -181,26 +178,54 @@ const AppContent = () => {
 
   const executeCommand = (command) => {
     const cmd = command.toLowerCase().trim();
+    const parts = cmd.split(' ');
+    const mainCommand = parts[0];
+    const args = parts.slice(1).join(' ');
 
     // Add command to output
     setOutput(prev => [...prev, { text: `$ ${command}`, type: 'command' }]);
 
-    switch (cmd) {
+    // Handle multi-word commands
+    if (cmd === 'blogs' || cmd === 'list blogs') {
+      setOutput(prev => [...prev, { text: 'Available blog posts:', type: 'info' }]);
+      blogPosts.forEach(post => {
+        setOutput(prev => [...prev, { text: `  [${post.id}] ${post.title}`, type: 'success' }]);
+        setOutput(prev => [...prev, { text: `      ${post.excerpt}`, type: 'muted' }]);
+        setOutput(prev => [...prev, { text: `      Date: ${post.date} | ${post.readTime}`, type: 'muted' }]);
+      });
+      setOutput(prev => [...prev, { text: '', type: 'text' }]);
+      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog 1")', type: 'info' }]);
+      return;
+    }
+
+    // Handle "blog <id>" to open a specific post
+    if (mainCommand === 'blog' && args) {
+      const id = parseInt(args.trim());
+
+      if (isNaN(id)) {
+        setOutput(prev => [...prev, { text: 'Invalid blog ID. Use a number.', type: 'error' }]);
+        return;
+      }
+
+      const post = blogPosts.find(p => p.id === id);
+      if (post) {
+        setOutput(prev => [...prev, { text: `Opening "${post.title}"...`, type: 'success' }]);
+        window.location.hash = `#/blog/${id}`;
+      } else {
+        setOutput(prev => [...prev, { text: `Blog post with ID ${id} not found.`, type: 'error' }]);
+        setOutput(prev => [...prev, { text: `Use "blogs" to see available posts.`, type: 'info' }]);
+      }
+      return;
+    }
+
+    switch (mainCommand) {
       case 'about':
         setOutput(prev => [...prev, { text: 'Navigating to About...', type: 'success' }]);
         window.location.hash = '#/about';
         break;
-      case 'projects':
-        setOutput(prev => [...prev, { text: 'Navigating to Projects...', type: 'success' }]);
-        window.location.hash = '#/projects';
-        break;
       case 'blog':
         setOutput(prev => [...prev, { text: 'Navigating to Blog...', type: 'success' }]);
         window.location.hash = '#/blog';
-        break;
-      case 'skills':
-        setOutput(prev => [...prev, { text: 'Navigating to Skills...', type: 'success' }]);
-        window.location.hash = '#/skills';
         break;
       case 'contact':
         setOutput(prev => [...prev, { text: 'Navigating to Contact...', type: 'success' }]);
@@ -224,7 +249,7 @@ const AppContent = () => {
       default:
         setOutput(prev => [
           ...prev,
-          { text: `Command not found: ${cmd}. Type 'help' for available commands.`, type: 'error' }
+          { text: `Command not found: ${mainCommand}. Type 'help' for available commands.`, type: 'error' }
         ]);
     }
   };
@@ -259,19 +284,15 @@ const AppContent = () => {
                     <MenuTitle theme={currentTheme}>Quick Navigation</MenuTitle>
                     <MenuList>
                       <MenuItem><MenuLink to="/about" theme={currentTheme}>about</MenuLink></MenuItem>
-                      <MenuItem><MenuLink to="/projects" theme={currentTheme}>projects</MenuLink></MenuItem>
                       <MenuItem><MenuLink to="/blog" theme={currentTheme}>blog</MenuLink></MenuItem>
-                      <MenuItem><MenuLink to="/skills" theme={currentTheme}>skills</MenuLink></MenuItem>
                       <MenuItem><MenuLink to="/contact" theme={currentTheme}>contact</MenuLink></MenuItem>
                     </MenuList>
                   </NavigationMenu>
                 </>
               } />
               <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
-              <Route path="/skills" element={<Skills />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
 
@@ -309,10 +330,8 @@ const AppContent = () => {
           <Routes>
             <Route path="/" element={<ClassicHome />} />
             <Route path="/about" element={<ClassicAbout />} />
-            <Route path="/projects" element={<ClassicProjects />} />
             <Route path="/blog" element={<ClassicBlog />} />
             <Route path="/blog/:id" element={<ClassicBlogPost />} />
-            <Route path="/skills" element={<ClassicSkills />} />
             <Route path="/contact" element={<ClassicContact />} />
           </Routes>
         </Content>

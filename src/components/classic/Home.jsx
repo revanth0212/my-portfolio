@@ -99,8 +99,6 @@ const Home = () => {
         </Subtitle>
         <Navigation>
           <NavLink to="/about" theme={currentTheme}>About</NavLink>
-          <NavLink to="/projects" theme={currentTheme}>Projects</NavLink>
-          <NavLink to="/skills" theme={currentTheme}>Skills</NavLink>
           <NavLink to="/blog" theme={currentTheme}>Blog</NavLink>
           <NavLink to="/contact" theme={currentTheme}>Contact</NavLink>
         </Navigation>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { useKeyboardNavigation, AVAILABLE_COMMANDS } from '../../utils/keyboardNavigation';
+import { siteConfig } from '../../config/site';
 
 const InputContainer = styled.form`
   display: flex;
@@ -141,7 +142,7 @@ const TerminalInput = ({ onExecuteCommand }) => {
 
   return (
     <InputContainer onSubmit={handleSubmit}>
-      <Prompt theme={currentTheme}>user@portfolio:~$</Prompt>
+      <Prompt theme={currentTheme}>{siteConfig.terminalPrompt}</Prompt>
       <InputWrapper>
         <StyledInput
           ref={inputRef}
