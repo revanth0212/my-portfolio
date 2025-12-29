@@ -25,12 +25,14 @@ function parseMarkdown(markdownContent, id) {
     }
   }
 
-  // Parse tags if they exist (comma-separated or array format)
+  // Parse tags if they exist (handles YAML array format)
   let tags = [];
   if (frontmatter.tags) {
-    tags = frontmatter.tags.includes(',')
-      ? frontmatter.tags.split(',').map(t => t.trim())
-      : frontmatter.tags.split(' ').map(t => t.trim());
+    const tagStr = frontmatter.tags.trim();
+    // Remove brackets if present
+    const cleanStr = tagStr.replace(/^\[|\]$/g, '');
+    // Split by comma and clean up each tag
+    tags = cleanStr.split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(t => t);
   }
 
   return {

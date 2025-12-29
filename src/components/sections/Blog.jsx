@@ -68,7 +68,7 @@ const TagButton = styled.button`
 
   ${props => props.active && `
     background-color: ${props.theme.accent};
-    color: ${props.theme.name === 'light' || props.theme.name === 'classic-light' ? '#fff' : props.theme.background};
+    color: ${props.theme.name === 'light' || props.theme.name === 'classic-light' ? '#000' : props.theme.background};
     border-color: ${props.theme.accent};
   `}
 
