@@ -845,7 +845,7 @@ This project demonstrates how accessible AI customization has become. By focusin
 **Keep in mind:** This is just a sample. To create a "Production Expert" that knows every library and edge case, you would need a much larger dataset (50,000+ examples) and significant compute time on high-end hardware.
 
 **Would you like me to help you set up a testing script to compare your new model's JavaScript answers against the original version?**`;function wy(e,t){const n=e.split("---"),r=n[1],a=n.slice(2).join("---").trim(),i={},o=r.trim().split(`
-`);for(const l of o){const u=l.indexOf(":");if(u>0){const c=l.slice(0,u).trim(),d=l.slice(u+1).trim();i[c]=d.replace(/^["']|["']$/g,"")}}let s=[];return i.tags&&(s=i.tags.includes(",")?i.tags.split(",").map(l=>l.trim()):i.tags.split(" ").map(l=>l.trim())),{id:t,title:i.title,date:i.date,readTime:i.readTime,excerpt:i.excerpt,content:a,tags:s}}const Pt=[wy(yR,1),wy(ER,2)],Uv=()=>{const e=new Set;return Pt.forEach(t=>{t.tags.forEach(n=>e.add(n))}),Array.from(e).sort()},vy=I.section`
+`);for(const l of o){const u=l.indexOf(":");if(u>0){const c=l.slice(0,u).trim(),d=l.slice(u+1).trim();i[c]=d.replace(/^["']|["']$/g,"")}}let s=[];return i.tags&&(s=i.tags.trim().replace(/^\[|\]$/g,"").split(",").map(c=>c.trim().replace(/^["']|["']$/g,"")).filter(c=>c)),{id:t,title:i.title,date:i.date,readTime:i.readTime,excerpt:i.excerpt,content:a,tags:s}}const Pt=[wy(yR,1),wy(ER,2)],Uv=()=>{const e=new Set;return Pt.forEach(t=>{t.tags.forEach(n=>e.add(n))}),Array.from(e).sort()},vy=I.section`
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
@@ -901,7 +901,7 @@ This project demonstrates how accessible AI customization has become. By focusin
 
   ${e=>e.active&&`
     background-color: ${e.theme.accent};
-    color: ${e.theme.name==="light"||e.theme.name==="classic-light"?"#fff":e.theme.background};
+    color: ${e.theme.name==="light"||e.theme.name==="classic-light"?"#000":e.theme.background};
     border-color: ${e.theme.accent};
   `}
 
@@ -1424,7 +1424,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 
   ${e=>e.active&&`
     background-color: ${e.theme.accent};
-    color: ${e.theme.name==="light"||e.theme.name==="classic-light"?"#fff":e.theme.background};
+    color: ${e.theme.name==="light"||e.theme.name==="classic-light"?"#000":e.theme.background};
     border-color: ${e.theme.accent};
   `}
 
@@ -1901,4 +1901,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     font-size: 0.95rem;
   }
 `,SD=()=>{const{currentTheme:e,toggleTheme:t}=We(),{view:n}=Is(),[r,a]=C.useState([]),[i,o]=C.useState(!1);sa();const s=u=>{const c=u.toLowerCase().trim(),d=c.split(" "),f=d[0],p=d.slice(1).join(" ");if(a(m=>[...m,{text:`$ ${u}`,type:"command"}]),c==="blogs"||c==="list blogs"){a(m=>[...m,{text:"Available blog posts:",type:"info"}]),Pt.forEach(m=>{a(E=>[...E,{text:`  [${m.id}] ${m.title}`,type:"success"}]),a(E=>[...E,{text:`      ${m.excerpt}`,type:"muted"}]),a(E=>[...E,{text:`      Date: ${m.date} | ${m.readTime}`,type:"muted"}])}),a(m=>[...m,{text:"",type:"text"}]),a(m=>[...m,{text:'Use "blog <id>" to read a post (e.g., "blog 1")',type:"info"}]);return}if(f==="blog"&&p){const m=parseInt(p.trim());if(isNaN(m)){a(k=>[...k,{text:"Invalid blog ID. Use a number.",type:"error"}]);return}const E=Pt.find(k=>k.id===m);E?(a(k=>[...k,{text:`Opening "${E.title}"...`,type:"success"}]),window.location.hash=`#/blog/${m}`):(a(k=>[...k,{text:`Blog post with ID ${m} not found.`,type:"error"}]),a(k=>[...k,{text:'Use "blogs" to see available posts.',type:"info"}]));return}switch(f){case"about":a(m=>[...m,{text:"Navigating to About...",type:"success"}]),window.location.hash="#/about";break;case"blog":a(m=>[...m,{text:"Navigating to Blog...",type:"success"}]),window.location.hash="#/blog";break;case"contact":a(m=>[...m,{text:"Navigating to Contact...",type:"success"}]),window.location.hash="#/contact";break;case"home":a(m=>[...m,{text:"Navigating to Home...",type:"success"}]),window.location.hash="#/";break;case"help":a(m=>[...m,{text:"Opening help...",type:"info"}]),o(!0);break;case"theme":t(),a(m=>[...m,{text:"Theme toggled!",type:"success"}]);break;case"clear":a([]);break;default:a(m=>[...m,{text:`Command not found: ${f}. Type 'help' for available commands.`,type:"error"}])}},l=()=>{o(!i)};return n==="terminal"?S.jsxs(CE,{children:[S.jsx(hy,{}),S.jsx(yy,{onToggleHelp:l}),S.jsx(OE,{children:S.jsxs(LE,{children:[S.jsxs(py,{children:[S.jsx(Nt,{path:"/",element:S.jsxs(S.Fragment,{children:[S.jsxs(bD,{theme:e,children:[S.jsx(yD,{theme:e,children:"Welcome to My Portfolio"}),S.jsx(ED,{theme:e,children:"Navigate using the commands below or type a command in the terminal."})]}),S.jsxs(gD,{theme:e,children:[S.jsx(mD,{theme:e,children:"Quick Navigation"}),S.jsxs(hD,{children:[S.jsx(Gl,{children:S.jsx(Hl,{to:"/about",theme:e,children:"about"})}),S.jsx(Gl,{children:S.jsx(Hl,{to:"/blog",theme:e,children:"blog"})}),S.jsx(Gl,{children:S.jsx(Hl,{to:"/contact",theme:e,children:"contact"})})]})]})]})}),S.jsx(Nt,{path:"/about",element:S.jsx(bR,{})}),S.jsx(Nt,{path:"/blog",element:S.jsx(NR,{})}),S.jsx(Nt,{path:"/blog/:id",element:S.jsx(b1,{})}),S.jsx(Nt,{path:"/contact",element:S.jsx(v1,{})})]}),r.length>0&&S.jsx(DE,{theme:e,children:r.map((u,c)=>S.jsx(fD,{className:u.type,theme:e,children:u.text},c))}),S.jsx(DE,{theme:e,children:S.jsx(pR,{onExecuteCommand:s})})]})}),S.jsx(Ey,{}),S.jsx(Sy,{isOpen:i,onClose:()=>o(!1)})]}):S.jsxs(CE,{children:[S.jsx(hy,{}),S.jsx(yy,{onToggleHelp:l}),S.jsx(OE,{children:S.jsx(LE,{children:S.jsxs(py,{children:[S.jsx(Nt,{path:"/",element:S.jsx(I1,{})}),S.jsx(Nt,{path:"/about",element:S.jsx(L1,{})}),S.jsx(Nt,{path:"/blog",element:S.jsx(W1,{})}),S.jsx(Nt,{path:"/blog/:id",element:S.jsx(eD,{})}),S.jsx(Nt,{path:"/contact",element:S.jsx(pD,{})})]})})}),S.jsx(Ey,{}),S.jsx(Sy,{isOpen:i,onClose:()=>o(!1)})]})},wD=()=>S.jsx(bI,{children:S.jsx(_I,{children:S.jsx(vD,{})})}),vD=()=>{const{view:e}=Is();return S.jsx(AI,{viewMode:e,children:S.jsx(SD,{})})};Vl.createRoot(document.getElementById("root")).render(S.jsx(we.StrictMode,{children:S.jsx(wD,{})}));
-//# sourceMappingURL=index-CKF0_1Sb.js.map
+//# sourceMappingURL=index-Bh2sT-ri.js.map
