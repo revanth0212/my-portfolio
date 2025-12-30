@@ -1,99 +1,139 @@
-# Terminal-Style Portfolio Website
+# Personal Portfolio Website
 
-A lightweight, terminal-style portfolio website built with React, featuring keyboard navigation, theme support, and a command-line interface aesthetic.
+A modern, dual-view personal portfolio website built with React. Features both a **Terminal view** (command-line aesthetic) and **Classic view** (modern card-based UI), with seamless switching between modes.
 
 ## Features
 
-- **Terminal UI Aesthetic**: Monospace fonts, ASCII art, and command-line interface styling
-- **Theme System**: Light theme (default) and dark theme with smooth transitions
-- **Full Keyboard Navigation**:
-  - `Ctrl+K` or `/`: Focus command input
-  - `Ctrl+T`: Toggle theme
-  - `Escape`: Clear input / Close modal
-  - `↑/↓`: Navigate command history
-  - `Tab`: Auto-complete commands
-  - `?`: Show help modal
-- **Command System**: Navigate using terminal commands (about, blog, projects, skills, contact)
-- **Blog System**: Markdown blog posts with syntax highlighting
-- **Responsive Design**: Works on all devices and screen sizes
-- **Accessible**: WCAG AA compliant with proper focus management and ARIA labels
+### Dual View Modes
+- **Terminal View**: Command-line interface aesthetic with monospace fonts and terminal-style navigation
+- **Classic View**: Modern, card-based interface with traditional navigation
+- Seamless view switching via ViewToggle button
+
+### Theme System
+- **4 Theme Options**:
+  - Terminal Dark (default): Black background with gold accent
+  - Terminal Light: Light gray background with dark accent
+  - Classic Dark: Dark theme for Classic view
+  - Classic Light: Light theme for Classic view
+- Smooth theme transitions
+- Theme persists across navigation
+
+### Keyboard Navigation
+- `Ctrl+K` or `/`: Focus command input (Terminal view)
+- `Ctrl+T`: Toggle theme
+- `Escape`: Clear input / Close modal
+- `↑/↓`: Navigate command history
+- `Tab`: Auto-complete commands
+- `?`: Show help modal
+
+### Command System (Terminal View)
+Navigate using terminal commands:
+- `about` - Navigate to About section
+- `blog` - Navigate to Blog section
+- `blogs` or `list blogs` - List all blog posts
+- `blog <id>` - Open specific blog post by ID (e.g., `blog moe-scaling`)
+- `contact` - Navigate to Contact section
+- `home` - Return to home
+- `theme` - Toggle theme
+- `clear` - Clear terminal output
+- `help` - Show help modal
+
+### Blog System
+- **Markdown-based**: Blog posts written in Markdown with frontmatter
+- **Syntax Highlighting**: Code blocks highlighted with Prism.js
+- **Tag Filtering**: Filter posts by tags (max 3 tags per article)
+- **Descriptive IDs**: Human-readable IDs like `moe-scaling`, `mlx-finetuning`
+- **Terminal Commands**: List and open posts via terminal interface
+
+### Design & Accessibility
+- **Responsive Design**: Mobile-first approach, works on all devices
+- **WCAG AA Compliant**: Proper focus management, ARIA labels, and color contrast
+- **Screen Reader Friendly**: Semantic HTML and descriptive labels
+- **Touch-Friendly**: Adequate button sizes for mobile interaction
 
 ## Tech Stack
 
 - **Framework**: React 18 with Vite
 - **Styling**: Styled Components
-- **Routing**: React Router v6
-- **Markdown**: React Markdown with Prism.js syntax highlighting
-- **Keyboard Navigation**: react-hotkeys-hook
-- **Hosting**: GitHub Pages
-- **CI/CD**: GitHub Actions
+- **Routing**: React Router v6 (HashRouter for GitHub Pages compatibility)
+- **Markdown**: React Markdown with syntax highlighting
+- **Deployment**: GitHub Pages via gh-pages
+- **Build Tool**: Vite for fast development and optimized builds
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 16+ and npm/yarn/pnpm
 
 ### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/revanth0212/my-portfolio.git
+cd my-portfolio
+
 # Install dependencies
 npm install
 
 # Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
-### Local Development
+The development server will start at `http://localhost:3000`
 
-The development server will start at `http://localhost:3000`.
+### Available Scripts
 
-### Build
-
-The production build will be created in the `dist` directory.
+```bash
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run preview   # Preview production build locally
+npm run deploy    # Build and deploy to GitHub Pages
+```
 
 ## Project Structure
 
 ```
 personal-portfolio/
-├── public/
-│   └── terminal-icon.svg
 ├── src/
 │   ├── components/
-│   │   ├── common/
+│   │   ├── sections/         # Terminal view components
+│   │   │   ├── About.jsx
+│   │   │   ├── Blog.jsx
+│   │   │   ├── BlogPost.jsx
+│   │   │   └── Contact.jsx
+│   │   ├── classic/          # Classic view components
+│   │   │   ├── About.jsx
+│   │   │   ├── Blog.jsx
+│   │   │   ├── BlogPost.jsx
+│   │   │   └── Home.jsx
+│   │   ├── common/           # Shared components
 │   │   │   ├── ThemeToggle.jsx
+│   │   │   ├── ViewToggle.jsx
 │   │   │   ├── HelpModal.jsx
 │   │   │   └── TerminalInput.jsx
-│   │   ├── layout/
-│   │   │   ├── Header.jsx
-│   │   │   └── Footer.jsx
-│   │   └── sections/
-│   │       ├── About.jsx
-│   │       ├── Blog.jsx
-│   │       ├── Projects.jsx
-│   │       ├── Skills.jsx
-│   │       └── Contact.jsx
+│   │   └── layout/           # Layout components
+│   │       ├── Header.jsx
+│   │       └── Footer.jsx
 │   ├── context/
-│   │   └── ThemeContext.jsx
+│   │   ├── ThemeContext.jsx  # Theme state management
+│   │   └── ViewContext.jsx   # View mode state management
 │   ├── data/
-│   │   ├── blogPosts.js
-│   │   └── projects.js
-│   ├── styles/
-│   │   ├── themes.js
-│   │   └── globalStyles.js
+│   │   └── blogPosts.js      # Blog posts re-exports
+│   ├── content/
+│   │   └── blog/             # Markdown blog posts
+│   │       ├── moe-cheat-sheet.md
+│   │       ├── mlx-finetuning.md
+│   │       └── index.js      # Blog parser & aggregator
+│   ├── config/
+│   │   └── site.js           # Site configuration
 │   ├── utils/
-│   │   └── keyboardNavigation.js
-│   ├── App.jsx
-│   └── main.jsx
-├── content/
-│   ├── blog/
-│   └── projects/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-├── index.html
+│   │   └── keyboardNavigation.js  # Keyboard shortcuts & commands
+│   ├── App.jsx               # Main app with routing
+│   └── main.jsx              # React entry point
+├── public/
+├── DESIGN_PRINCIPLES.md      # Architecture & design decisions
+├── DEPLOYMENT.md             # Deployment guide
 ├── package.json
 ├── vite.config.js
 └── README.md
@@ -103,131 +143,124 @@ personal-portfolio/
 
 ### Personal Information
 
-Update the following files with your information:
+Update these files with your information:
 
-1. **Contact Section**: `src/components/sections/Contact.jsx`
-   - Email address
-   - Location
+1. **Site Configuration**: `src/config/site.js`
+   - Site title, description, author name
+   - Terminal prompt format
    - Social media links
 
-2. **Projects**: `src/data/projects.js`
-   - Add your projects
-   - Update GitHub URLs
-   - Add live demo URLs
+2. **About Section**:
+   - Terminal: `src/components/sections/About.jsx`
+   - Classic: `src/components/classic/About.jsx`
 
-3. **Blog Posts**: `src/data/blogPosts.js`
-   - Add your blog posts
-   - Include Markdown content
+3. **Contact Section**:
+   - Terminal: `src/components/sections/Contact.jsx`
+   - Classic: `src/components/classic/Contact.jsx`
 
-4. **Skills**: `src/components/sections/Skills.jsx`
-   - Update skill categories
-   - Adjust proficiency levels
+### Adding Blog Posts
 
-5. **About Section**: `src/components/sections/About.jsx`
-   - Personalize your introduction
+1. Create a new Markdown file in `src/content/blog/`:
+
+```markdown
+---
+id: "your-article-id"
+title: "Your Article Title"
+date: "2025-01-15"
+readTime: "8 min read"
+excerpt: "Brief description of your article..."
+tags: ["Category", "Purpose", "Technology"]
+---
+
+# Your Article Content
+
+Write your article in Markdown format...
+```
+
+2. **ID Guidelines**:
+   - Use descriptive, unique IDs (not numbers)
+   - Format: `topic-purpose` (e.g., `moe-scaling`, `mlx-finetuning`)
+   - Must be URL-friendly (lowercase, hyphen-separated)
+
+3. **Tag Guidelines**:
+   - Maximum 3 tags per article
+   - Maximum 6 unique tags across all articles
+   - Structure: Category, Purpose, Technology
+   - Examples: `["AI", "Performance", "MoE"]`
+
+4. Add import to `src/content/blog/index.js`:
+
+```javascript
+import yourPostMarkdown from './your-article.md?raw';
+
+export const blogPosts = [
+  parseMarkdown(post1Markdown),
+  parseMarkdown(post2Markdown),
+  parseMarkdown(yourPostMarkdown),  // Add your post
+];
+```
 
 ### Theme Customization
 
-Edit `src/styles/themes.js` to customize colors:
+Edit `src/context/ThemeContext.jsx` to customize or add themes:
 
 ```javascript
-export const lightTheme = {
-  background: '#ffffff',
-  foreground: '#333333',
-  accent: '#0066cc',
-  // ... more colors
-};
-
-export const darkTheme = {
-  background: '#0a0a0a',
-  foreground: '#00ff00',
-  accent: '#00ffff',
-  // ... more colors
+export const themes = {
+  'terminal-dark': {
+    name: 'terminal-dark',
+    background: '#000000',
+    foreground: '#e0e0e0',
+    accent: '#FFD700',      // Gold
+    secondary: '#1a1a1a',
+    border: '#333333',
+    muted: '#888888'
+  },
+  // Add more themes...
 };
 ```
 
-### GitHub Pages Configuration
+### Adding New Sections
 
-1. Update `vite.config.js` with your repository name:
+To add a new section (e.g., Projects):
 
-```javascript
-export default defineConfig({
-  base: '/your-repo-name/', // Update this
-  // ... rest of config
-});
-```
+1. Create Terminal view component in `src/components/sections/Projects.jsx`
+2. Create Classic view component in `src/components/classic/Projects.jsx`
+3. Add routes in `src/App.jsx` (both Terminal and Classic sections)
+4. Add navigation links to both views
+5. Add terminal command handling in `src/App.jsx`
+6. Update `AVAILABLE_COMMANDS` in `src/utils/keyboardNavigation.js`
+7. Update `src/components/common/HelpModal.jsx` with new command
 
-2. Update `index.html` meta tags with your information.
+See `DESIGN_PRINCIPLES.md` for detailed guidelines.
 
 ## Deployment
 
-### GitHub Pages
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions, including:
 
-1. Push your code to GitHub
-2. Enable GitHub Pages in repository settings:
-   - Go to Settings → Pages
-   - Source: GitHub Actions
-3. Push to `main` branch to trigger deployment
+- GitHub Pages setup
+- Custom domain configuration
+- Troubleshooting deployment issues
+- Manual deployment process
 
-The GitHub Actions workflow will automatically build and deploy your site.
+## Documentation
 
-### Manual Deployment
-
-```bash
-npm run build
-npm run deploy
-```
-
-## Adding Blog Posts
-
-1. Add a new entry to `src/data/blogPosts.js`:
-
-```javascript
-{
-  id: 4,
-  title: 'Your Post Title',
-  date: '2024-01-20',
-  readTime: '5 min read',
-  excerpt: 'Brief description of your post...',
-  content: `# Your Post Content in Markdown`
-}
-```
-
-2. The blog supports Markdown with syntax highlighting:
-
-\`\`\`javascript
-// Code blocks with syntax highlighting
-const greeting = 'Hello, World!';
-\`\`\`
-
-## Commands
-
-The portfolio supports these terminal commands:
-
-- `about` - Navigate to About section
-- `blog` - Navigate to Blog section
-- `projects` - Navigate to Projects section
-- `skills` - Navigate to Skills section
-- `contact` - Navigate to Contact section
-- `home` - Return to home
-- `theme` - Toggle between light and dark theme
-- `clear` - Clear terminal output
-- `help` - Show help modal
+- **[DESIGN_PRINCIPLES.md](DESIGN_PRINCIPLES.md)** - Architecture, design decisions, and contribution guidelines
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment guide and troubleshooting
 
 ## Performance
 
-- Code splitting with React.lazy
-- Optimized bundle size with Vite
-- Lazy loading for images
-- Efficient re-renders with React.memo
+- Vite's optimized build process
+- React Fast Refresh for development
+- Efficient re-renders with proper state management
+- Consider code splitting for large applications (see DESIGN_PRINCIPLES.md)
 
 ## Accessibility
 
-- Full keyboard navigation
-- ARIA labels on interactive elements
-- Skip navigation link
-- Focus indicators
-- WCAG AA contrast ratios
+- Full keyboard navigation support
+- ARIA labels on all interactive elements
+- Semantic HTML structure
+- WCAG AA compliant color contrast
+- Focus indicators on all focusable elements
 - Screen reader compatible
 
 ## License
@@ -236,4 +269,13 @@ This project is open source and available under the MIT License.
 
 ## Credits
 
-Built with React, Vite, and Styled Components.
+Built with:
+- React
+- Vite
+- Styled Components
+- React Router
+- React Markdown
+
+---
+
+**Last Updated**: December 29, 2025
