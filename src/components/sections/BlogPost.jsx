@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { blogPosts } from '../../data/blogPosts';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Navigate } from 'react-router-dom';
@@ -111,6 +112,23 @@ const PostContent = styled.div`
     margin: 1.5rem 0;
   }
 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid ${props => props.theme.border};
+      text-align: left;
+    }
+
+    th {
+      background-color: ${props => props.theme.secondary};
+      font-weight: 600;
+    }
+  }
+
   @media (max-width: 768px) {
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.25rem; }
@@ -144,6 +162,7 @@ const BlogPost = () => {
           {post.date} • {post.readTime}
         </PostMeta>
         <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
           components={{
             code({ node, inline, className, children, ...props }) {
               const match = /language-(\w+)/.exec(className || '');

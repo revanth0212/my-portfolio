@@ -59,7 +59,7 @@ Consider a common developer setup: **3x Mac mini (M4 Pro)** with 24GB of Unified
 | --- | --- | --- |
 | **Unified Memory** | 24 GB | **72 GB** (Pooled) |
 | **GPU Cores** | 16 Cores | **48 Cores** (Active) |
-| **Interconnect** | Thunderbolt 5 | **80 Gbps / <14$\mu$s latency** |
+| **Interconnect** | Thunderbolt 5 | **80 Gbps / <14μs latency** |
 
 ### How It Works: Sharding vs. Pooling
 
