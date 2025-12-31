@@ -27,6 +27,37 @@ const SectionTitle = styled.h2`
   }
 `;
 
+const SearchContainer = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: ${props => props.theme.secondary};
+  border: 1px solid ${props => props.theme.border};
+  border-radius: 5px;
+  color: ${props => props.theme.foreground};
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.accent};
+    box-shadow: 0 0 0 2px ${props => props.theme.accent};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.muted};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.65rem 0.85rem;
+  }
+`;
+
 const TagFilter = styled.div`
   margin-bottom: 1.5rem;
   display: flex;
@@ -162,21 +193,53 @@ const EmptyState = styled.div`
   text-align: center;
   padding: 3rem;
   color: ${props => props.theme.muted};
+  font-size: 0.95rem;
 
   @media (max-width: 768px) {
     padding: 2rem 1rem;
+    font-size: 0.9rem;
   }
 `;
 
 const Blog = () => {
   const { currentTheme } = useTheme();
   const [selectedTag, setSelectedTag] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const allTags = getAllTags();
 
   const filteredPosts = useMemo(() => {
-    if (!selectedTag) return blogPosts;
-    return blogPosts.filter(post => post.tags.includes(selectedTag));
-  }, [selectedTag]);
+    let posts = blogPosts;
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      posts = posts.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.content.toLowerCase().includes(query) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
+      );
+    }
+
+    // Filter by tag
+    if (selectedTag && !searchQuery.trim()) {
+      posts = posts.filter(post => post.tags.includes(selectedTag));
+    }
+
+    return posts;
+  }, [selectedTag, searchQuery]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    // Clear tag filter when user starts typing
+    if (e.target.value && selectedTag) {
+      setSelectedTag(null);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   if (blogPosts.length === 0) {
     return (
@@ -195,6 +258,19 @@ const Blog = () => {
       <p style={{ color: currentTheme.muted, marginBottom: '1.5rem' }}>
         Thoughts, tutorials, and insights about software development
       </p>
+
+      <SearchContainer>
+        <form onSubmit={handleSubmit}>
+          <SearchInput
+            type="text"
+            placeholder="Search posts by title, content, or tags..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            theme={currentTheme}
+            aria-label="Search blog posts"
+          />
+        </form>
+      </SearchContainer>
 
       <TagFilter>
         <FilterLabel theme={currentTheme}>Filter:</FilterLabel>
@@ -217,8 +293,15 @@ const Blog = () => {
         ))}
       </TagFilter>
 
-      <BlogList>
-        {filteredPosts.map((post) => (
+      {filteredPosts.length === 0 ? (
+        <EmptyState theme={currentTheme}>
+          {searchQuery || selectedTag
+            ? `No posts found matching "${searchQuery || selectedTag}"`
+            : 'No blog posts yet. Check back soon!'}
+        </EmptyState>
+      ) : (
+        <BlogList>
+          {filteredPosts.map((post) => (
           <BlogCard
             key={post.id}
             to={`/blog/${post.id}`}
@@ -239,7 +322,8 @@ const Blog = () => {
             <PostExcerpt theme={currentTheme}>{post.excerpt}</PostExcerpt>
           </BlogCard>
         ))}
-      </BlogList>
+        </BlogList>
+      )}
     </SectionContainer>
   );
 };
