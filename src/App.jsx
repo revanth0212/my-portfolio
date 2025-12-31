@@ -195,6 +195,89 @@ const AppContent = () => {
       });
       setOutput(prev => [...prev, { text: '', type: 'text' }]);
       setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post (e.g., "blog moe-scaling")', type: 'info' }]);
+      setOutput(prev => [...prev, { text: 'Use "blogs search <query>" to search posts', type: 'info' }]);
+      setOutput(prev => [...prev, { text: 'Use "blogs tag <tag>" to filter by tag', type: 'info' }]);
+      return;
+    }
+
+    // Handle search command
+    if (cmd.startsWith('blogs search ') || cmd.startsWith('search blogs ')) {
+      const query = cmd.replace('blogs search ', '').replace('search blogs ', '').toLowerCase().trim();
+
+      if (!query) {
+        setOutput(prev => [...prev, { text: 'Please provide a search query.', type: 'error' }]);
+        setOutput(prev => [...prev, { text: 'Usage: blogs search <query>', type: 'info' }]);
+        return;
+      }
+
+      const filteredPosts = blogPosts.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+
+      if (filteredPosts.length === 0) {
+        setOutput(prev => [...prev, { text: `No posts found matching "${query}"`, type: 'error' }]);
+        return;
+      }
+
+      setOutput(prev => [...prev, { text: `Found ${filteredPosts.length} post(s) matching "${query}":`, type: 'info' }]);
+      filteredPosts.forEach(post => {
+        setOutput(prev => [...prev, { text: `  [${post.id}] ${post.title}`, type: 'success' }]);
+        setOutput(prev => [...prev, { text: `      ${post.excerpt}`, type: 'muted' }]);
+        setOutput(prev => [...prev, { text: `      Date: ${post.date} | ${post.readTime}`, type: 'muted' }]);
+      });
+      setOutput(prev => [...prev, { text: '', type: 'text' }]);
+      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post', type: 'info' }]);
+      return;
+    }
+
+    // Handle tag filter command
+    if (cmd.startsWith('blogs tag ') || cmd.startsWith('tag blogs ')) {
+      const tag = cmd.replace('blogs tag ', '').replace('tag blogs ', '').trim();
+
+      if (!tag) {
+        setOutput(prev => [...prev, { text: 'Please provide a tag name.', type: 'error' }]);
+        setOutput(prev => [...prev, { text: 'Usage: blogs tag <tag>', type: 'info' }]);
+        return;
+      }
+
+      const filteredPosts = blogPosts.filter(post =>
+        post.tags.some(postTag => postTag.toLowerCase() === tag.toLowerCase())
+      );
+
+      if (filteredPosts.length === 0) {
+        setOutput(prev => [...prev, { text: `No posts found with tag "${tag}"`, type: 'error' }]);
+        return;
+      }
+
+      setOutput(prev => [...prev, { text: `Found ${filteredPosts.length} post(s) tagged with "${tag}":`, type: 'info' }]);
+      filteredPosts.forEach(post => {
+        setOutput(prev => [...prev, { text: `  [${post.id}] ${post.title}`, type: 'success' }]);
+        setOutput(prev => [...prev, { text: `      ${post.excerpt}`, type: 'muted' }]);
+        setOutput(prev => [...prev, { text: `      Date: ${post.date} | ${post.readTime}`, type: 'muted' }]);
+        setOutput(prev => [...prev, { text: `      Tags: ${post.tags.join(', ')}`, type: 'muted' }]);
+      });
+      setOutput(prev => [...prev, { text: '', type: 'text' }]);
+      setOutput(prev => [...prev, { text: 'Use "blog <id>" to read a post', type: 'info' }]);
+      return;
+    }
+
+    // Handle list tags command
+    if (cmd === 'blogs tags' || cmd === 'list tags' || cmd === 'tags') {
+      const allTags = new Set();
+      blogPosts.forEach(post => {
+        post.tags.forEach(tag => allTags.add(tag));
+      });
+      const sortedTags = Array.from(allTags).sort();
+
+      setOutput(prev => [...prev, { text: `Available tags (${sortedTags.length}):`, type: 'info' }]);
+      sortedTags.forEach(tag => {
+        const count = blogPosts.filter(post => post.tags.includes(tag)).length;
+        setOutput(prev => [...prev, { text: `  [${tag}] ${count} post(s)`, type: 'success' }]);
+      });
+      setOutput(prev => [...prev, { text: '', type: 'text' }]);
+      setOutput(prev => [...prev, { text: 'Use "blogs tag <tag>" to filter posts by tag', type: 'info' }]);
       return;
     }
 
