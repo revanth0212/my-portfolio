@@ -1,6 +1,6 @@
 const e=`---
 id: "moe-scaling"
-title: "Scaling LLMs Without Killing Your Compute Budget"
+title: "More Brains, Less FLOPs: Why MoE is the \\"Lazy Loading\\" of LLMs"
 date: "2025-12-25"
 readTime: "10 min read"
 excerpt: "Learn how Mixture-of-Experts (MoE) architecture breaks the wall between model size and computational efficiency."
@@ -58,4 +58,4 @@ In distributed environments, MoE can be a networking nightmare. If Expert A is o
 
 MoE is the bridge to trillion-parameter models, but for many "on-the-ground" dev tasks, a well-optimized dense model is still the reliable workhorse of the industry.
 `;export{e as default};
-//# sourceMappingURL=moe-cheat-sheet-qGm35v4X.js.map
+//# sourceMappingURL=moe-cheat-sheet-BOF2Zhpo.js.map
